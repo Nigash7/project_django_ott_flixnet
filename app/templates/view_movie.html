@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ movie.title }}</title>
+</head>
+<body style="font-family: 'Poppins', sans-serif; background-color: #f4f6f8; margin: 0; padding: 0;">
+  <div style="max-width: 700px; margin: 50px auto; background-color: #fff; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 30px; text-align: center;">
+    
+    <h2 style="color: #333; margin-bottom: 20px;">{{ movie.title }}</h2>
+
+    <p style="color: #555; font-size: 16px; line-height: 1.6;">
+      <strong>Description:</strong><br>
+      {{ movie.description }}
+    </p>
+
+    {% if movie.image %}
+    <div style="margin: 20px 0;">
+      <img src="{{ movie.image.url }}" alt="{{ movie.title }}" style="width: 100%; max-width: 400px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+    </div>
+    {% endif %}
+
+    {% if movie.video_file %}
+    <div style="margin: 25px 0;">
+      <video width="100%" style="max-width: 500px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);" controls>
+        <source src="{{ movie.video_file.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    {% endif %}
+
+    <a href="{% url 'adminhome' %}">
+      <button style="padding: 10px 25px; background-color: #007bff; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: all 0.3s;">
+        ⬅️ Back to List
+      </button>
+    </a>
+  </div>
+</body>
+
+</html>

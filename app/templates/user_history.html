@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ user.name }} - History</title>
+</head>
+<body style="font-family: 'Poppins', sans-serif; background-color: #f4f6f8; margin: 0; padding: 0;">
+  <div style="max-width: 800px; margin: 50px auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 30px;">
+    
+    <h2 style="text-align: center; color: #333; margin-bottom: 25px;">
+      🎞️ Watch History — <span style="color:#007bff;">{{ user.name }}</span>
+    </h2>
+
+    {% if history %}
+      <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+          <tr style="background-color: #007bff; color: white; text-align: left;">
+            <th style="padding: 12px; border-radius: 8px 0 0 0;">Movie Title</th>
+            <th style="padding: 12px; border-radius: 0 8px 0 0;">Date Watched</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in history %}
+          <tr style="border-bottom: 1px solid #e0e0e0;">
+            <td style="padding: 12px; color: #333;">{{ item.movie.title }}</td>
+            <td style="padding: 12px; color: #666;">{{ item.date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p style="text-align: center; color: #888; margin-top: 30px;">No history available.</p>
+    {% endif %}
+
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="{% url 'adminuserview' %}">
+        <button style="background-color: #6c757d; color: white; border: none; padding: 10px 25px; border-radius: 8px; font-size: 16px; cursor: pointer; transition: 0.3s;">
+          ⬅ Back
+        </button>
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>

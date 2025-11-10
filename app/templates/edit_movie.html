@@ -1,0 +1,59 @@
+<h2>Edit Movie</h2>
+
+<body style="font-family: 'Poppins', sans-serif; background-color: #f4f6f8; margin: 0; padding: 0;">
+  <div style="max-width: 600px; margin: 50px auto; background-color: #fff; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); padding: 30px;">
+    
+    <h2 style="text-align: center; color: #333; margin-bottom: 25px;">✏️ Edit Movie Details</h2>
+
+    <form method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 18px;">
+      {% csrf_token %}
+      
+      <div>
+        <label style="font-weight: 600; color: #444;">Title:</label><br>
+        <input type="text" name="title" value="{{ movie.title }}" 
+               style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px;">
+      </div>
+
+      <div>
+        <label style="font-weight: 600; color: #444;">Description:</label><br>
+        <textarea name="description" rows="4"
+                  style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 15px;">{{ movie.description }}</textarea>
+      </div>
+
+      <div>
+        <label style="font-weight: 600; color: #444;">Thumbnail:</label><br>
+        {% if movie.thumbnail %}
+        <img src="{{ movie.thumbnail.url }}" alt="{{ movie.title }}" 
+             style="width: 150px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin: 10px 0;">
+        {% endif %}
+        <input type="file" name="thumbnail" 
+               style="padding: 8px; border: 1px solid #ccc; border-radius: 8px; width: 100%;">
+      </div>
+
+      <div>
+        <label style="font-weight: 600; color: #444;">Video File:</label><br>
+        {% if movie.video_file %}
+        <video width="100%" style="max-width: 300px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); margin: 10px 0;" controls>
+          <source src="{{ movie.video_file.url }}" type="video/mp4">
+        </video>
+        {% endif %}
+        <input type="file" name="video_file" 
+               style="padding: 8px; border: 1px solid #ccc; border-radius: 8px; width: 100%;">
+      </div>
+
+      <div style="display: flex; justify-content: space-between; gap: 15px; margin-top: 20px;">
+        <button type="submit"
+                style="flex: 1; background-color: #007bff; color: white; padding: 10px 0; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: 0.3s;">
+          💾 Save Changes
+        </button>
+
+        <a href="{% url 'adminhome' %}" style="flex: 1; text-decoration: none;">
+          <button type="button"
+                  style="width: 100%; background-color: #6c757d; color: white; padding: 10px 0; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: 0.3s;">
+            ❌ Cancel
+          </button>
+        </a>
+      </div>
+    </form>
+  </div>
+</body>

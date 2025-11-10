@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add movie</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+</head>
+<body>
+    {% include 'adminnav.html' %}
+    <div class="container">
+        <div class="card"style="margin-top: 50px;">
+            <div class="card-header">
+                <h3>Add Movie</h3>
+            </div>
+            <div class="card-body" >
+                <form action="" method="POST" enctype="multipart/form-data"  style=" display: flex; flex-direction: column;">
+                    {% csrf_token %}
+                    {% if message %}
+                   <p style="background-color: aquamarine;padding: 10px; border-radius: 10px;">{{ message }}</p>
+                   {% endif %}
+                   {% if error %}
+                   <p style="background-color: rgb(250, 60, 60); padding: 10px; border-radius: 10px;">{{ error }} </p> 
+                    {% endif %}
+                   <div class="form-group"style=" display: flex; flex-direction: column;">
+                        <label for="file" >thumbnail</label>
+                        <input name="thumbnail" type="file"accept="image/*" >
+                        <label for="file">upload video</label>
+                       <input name="video_file" type="file"  accept="video/*" >
+                        <label for="title">Movie Title</label>
+                        <input type="text" class="form-control" id="title" name="title" >
+                    <label for="title">description</label>
+                        <textarea name="description" id=""></textarea>
+                        <div style="display: flex; justify-content: end; margin: 20px;">
+                    <input style=" width: 100px;" type="submit"></div></form>
+        </div>
+    </div>
+
+    
+</body>
+</html>
